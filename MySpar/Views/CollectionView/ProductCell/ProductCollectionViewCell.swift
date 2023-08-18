@@ -22,6 +22,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
         
         contentConfiguration = newConfiguration
     }
-    
+
 }
 

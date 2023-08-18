@@ -9,7 +9,7 @@ import UIKit
 
 class BonusStatusCollectionViewCell: UICollectionViewCell {
     
-    var bonusStatus = UILabel()
+    var bonus = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,16 +19,15 @@ class BonusStatusCollectionViewCell: UICollectionViewCell {
         backgroundImageView.frame = contentView.bounds
         contentView.addSubview(backgroundImageView)
         
-        bonusStatus.font = UIFont.systemFont(ofSize: 21, weight: .bold)
-        bonusStatus.textColor = .black.withAlphaComponent(0.9)
+        bonus.font = UIFont.systemFont(ofSize: 21, weight: .bold)
+        bonus.textColor = .black.withAlphaComponent(0.9)
         contentView.layer.cornerRadius = 20
         contentView.clipsToBounds = true
 
-        
-        contentView.addSubview(bonusStatus)
-        bonusStatus.translatesAutoresizingMaskIntoConstraints = false
-        bonusStatus.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        bonusStatus.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
+        contentView.addSubview(bonus)
+        bonus.translatesAutoresizingMaskIntoConstraints = false
+        bonus.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        bonus.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
         
     }
     

@@ -20,11 +20,8 @@ class ServiceContentView: UIView, UIContentView {
         }
     }
     
-    
     let title = UILabel()
     let imageView = UIImageView()
-    
-    
     
     private func setupViews() {
         
@@ -60,8 +57,6 @@ class ServiceContentView: UIView, UIContentView {
         imageView.image = configuration.image
     }
     
-    
-    
     init(configuration: ServiceContentConfiguration) {
         super.init(frame: .zero)
         self.configuration = configuration
@@ -76,4 +71,5 @@ class ServiceContentView: UIView, UIContentView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }

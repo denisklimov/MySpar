@@ -14,4 +14,5 @@ struct ServiceModel: Hashable {
     let title: String
     let titleColor: UIColor
     let image: UIImage
+    
 }

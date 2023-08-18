@@ -20,7 +20,6 @@ class StoryContentView: UIView, UIContentView {
         }
     }
     
-    
     let imageView = UIImageView()
     let footer = UILabel()
     
@@ -34,35 +33,32 @@ class StoryContentView: UIView, UIContentView {
         imageView.layer.cornerRadius = bounds.width / 2
     }
     
-    
     private func setupViews() {
-        
+
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.borderWidth = 2.0
+ 
         footer.font = UIFont.systemFont(ofSize: 12)
         footer.textAlignment = .center
         footer.numberOfLines = 2
         
-        imageView.clipsToBounds = true
- 
-        addSubview(footer)
         addSubview(imageView)
+        addSubview(footer)
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
-        imageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
-        imageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalTo: widthAnchor).isActive = true
-
-        
-        imageView.layer.borderWidth = 2.0
+        imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
 
         footer.translatesAutoresizingMaskIntoConstraints = false
         footer.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
-        footer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        footer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        
+        footer.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        footer.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        footer.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
     }
-    
-    
     
     private func apply(configuration: StoryContentConfiguration) {
         
@@ -72,9 +68,7 @@ class StoryContentView: UIView, UIContentView {
         footer.text = configuration.footer
         imageView.layer.borderColor = configuration.borderColor?.cgColor
     }
-    
-    
-    
+
     init(configuration: StoryContentConfiguration) {
         super.init(frame: .zero)
         self.configuration = configuration
@@ -85,4 +79,5 @@ class StoryContentView: UIView, UIContentView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }

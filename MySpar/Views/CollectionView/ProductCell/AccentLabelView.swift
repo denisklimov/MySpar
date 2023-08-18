@@ -17,15 +17,13 @@ class AccentLabelView: UIView {
     var background: UIColor? {
         didSet {
             if let background = background {
-                if let _ = label {
+                
                     backgroundColor = background.withAlphaComponent(0.6)
-                } else {
-                    backgroundColor = .clear
-                }
+               
             } else {
-                if let _ = label {
+                
                     backgroundColor = .red.withAlphaComponent(0.6)
-                }
+                
             }
         }
     }

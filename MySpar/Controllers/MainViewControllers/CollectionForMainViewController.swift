@@ -9,10 +9,8 @@ import UIKit
 
 class CollectionForMainViewController: UICollectionViewController {
     
-    
-    
-    private typealias CollectionVieDiffableDataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>
-    private typealias DiffableDataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>
+    private typealias CollectionVieDiffableDataSource = UICollectionViewDiffableDataSource<Section, UUID>
+    private typealias DiffableDataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, UUID>
     
     private enum Section: Int, CaseIterable {
         case stories
@@ -25,8 +23,6 @@ class CollectionForMainViewController: UICollectionViewController {
     
     private var dataSource: CollectionVieDiffableDataSource!
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,19 +31,27 @@ class CollectionForMainViewController: UICollectionViewController {
         collectionView.dataSource = createDataSource()
 
         var snapshot = DiffableDataSourceSnapshot()
+        
         snapshot.appendSections(Section.allCases)
         let storiesIDs = DataOfModels.stories.map { $0.id }
         snapshot.appendItems(storiesIDs, toSection: .stories)
-        snapshot.appendItems(DataOfModels.specialOffers, toSection: .banners)
-        snapshot.appendItems(DataOfModels.bonusStatus, toSection: .bonus)
+        
+        let bannersIDs = DataOfModels.banners.map { $0.id }
+        snapshot.appendItems(bannersIDs, toSection: .banners)
+        
+        let bonusID = DataOfModels.bonus.map { $0.id }
+        snapshot.appendItems(bonusID, toSection: .bonus)
+        
         let servicesIDs = DataOfModels.services.map { $0.id }
         snapshot.appendItems(servicesIDs, toSection: .services)
+        
         let recommendationsIDs = DataOfModels.recomendations.map {$0.id}
         snapshot.appendItems(recommendationsIDs, toSection: .recommend)
-        snapshot.appendItems(DataOfModels.sweets, toSection: .sweets)
+        
+        let sweetsIDs = DataOfModels.sweets.map { $0.id }
+        snapshot.appendItems(sweetsIDs, toSection: .sweets)
         dataSource.apply(snapshot)
     }
-    
     
     private func createDataSource() -> CollectionVieDiffableDataSource {
         
@@ -55,19 +59,13 @@ class CollectionForMainViewController: UICollectionViewController {
             cell.itemModel = itemModel
         }
         
-        let specialOfferCellRegistration = UICollectionView.CellRegistration<SpecialOfferCollectionViewCell, SpecialOfferModel> { cell, indexPath, item in
-            cell.specialOfferImageView.image = item.specialOfferImage
+        let specialOfferCellRegistration = UICollectionView.CellRegistration<BannerCollectionViewCell, BannerModel> { cell, indexPath, itemModel in
+            cell.itemModel = itemModel
         }
         
-        let bonusStatusCellRegistration = UICollectionView.CellRegistration<BonusStatusCollectionViewCell, BonusStatusModel> { cell, indexPath, item in
-            cell.bonusStatus.text = "\(item.bounus) bonus"
+        let bonusStatusCellRegistration = UICollectionView.CellRegistration<BonusStatusCollectionViewCell, BonusModel> { cell, indexPath, item in
+            cell.bonus.text = "Бонусов: \(item.bounus)"
         }
-        
-//        let serviceCellRegistration = UICollectionView.CellRegistration<ServiceCollectionViewCell, ServiceModel> { cell, indexPath, item in
-//            cell.serviceTitle.text = item.serviceTitle
-//            cell.setColorForTitle(item.titleColorMode)
-//            cell.serviceImageView.image = item.serviceImage
-//        }
         
         let serviceCellRegistration = UICollectionView.CellRegistration<ServiceConfCollectionViewCell, ServiceModel> { cell, indexPath, item in
             cell.item = item
@@ -102,47 +100,44 @@ class CollectionForMainViewController: UICollectionViewController {
             supplementaryView.title.text = title
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
+        dataSource = CollectionVieDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             
             switch Section(rawValue: indexPath.section) {
             
-            case .none:
-                return nil
-            
-            case .some(.stories):
-                //let item = DataOfModels.stories[indexPath.row]
-                let itemModel = DataOfModels.stories.first(where: {$0.id == itemIdentifier as! UUID})
+            case .stories:
+                let itemModel = DataOfModels.stories.first(where: { $0.id == itemIdentifier })
                 let cell = collectionView.dequeueConfiguredReusableCell(using: storyCellRegistration, for: indexPath, item: itemModel)
                 return cell
             
-            case .some(.banners):
-                let item = DataOfModels.specialOffers[indexPath.row]
-                let cell = collectionView.dequeueConfiguredReusableCell(using: specialOfferCellRegistration, for: indexPath, item: item)
+            case .banners:
+                let itemModel = DataOfModels.banners.first(where: { $0.id == itemIdentifier })
+                let cell = collectionView.dequeueConfiguredReusableCell(using: specialOfferCellRegistration, for: indexPath, item: itemModel)
                 return cell
                 
-            case .some(.bonus):
-                let item = DataOfModels.bonusStatus[indexPath.row]
+            case .bonus:
+                let item = DataOfModels.bonus.first(where: { $0.id == itemIdentifier })
                 let cell = collectionView.dequeueConfiguredReusableCell(using: bonusStatusCellRegistration, for: indexPath, item: item)
                 return cell
                 
-            case .some(.services):
-                //let item = DataOfModels.services[indexPath.row]
-                let item = DataOfModels.services.first(where: {$0.id == itemIdentifier as! UUID} )
+            case .services:
+                let item = DataOfModels.services.first(where: { $0.id == itemIdentifier } )
                 let cell = collectionView.dequeueConfiguredReusableCell(using: serviceCellRegistration, for: indexPath, item: item)
                 return cell
                 
-            case .some(.recommend):
+            case .recommend:
 
-                let item = DataOfModels.recomendations.first(where: {$0.id == itemIdentifier as! UUID} )
+                let item = DataOfModels.recomendations.first(where: { $0.id == itemIdentifier })
                 let cell = collectionView.dequeueConfiguredReusableCell(using: productCellRegistration, for: indexPath, item: item)
                 return cell
                 
-            case .some(.sweets):
-                let item = DataOfModels.sweets[indexPath.row]
+            case .sweets:
+                let item = DataOfModels.sweets.first(where: { $0.id == itemIdentifier })
                 let cell = collectionView.dequeueConfiguredReusableCell(using: productCellRegistration, for: indexPath, item: item)
                 return cell
-            }
             
+            case .none:
+                return nil
+            }
 
         }
         
@@ -152,7 +147,6 @@ class CollectionForMainViewController: UICollectionViewController {
         
         return dataSource
     }
-    
     
     private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
         
@@ -165,11 +159,11 @@ class CollectionForMainViewController: UICollectionViewController {
                 
             case .some(.stories): return storiesSectionLayout()
 
-            case .some(.banners): return specialOffersSectionLayout()
+            case .some(.banners): return bannersSectionLayout()
 
             case .some(.bonus): return bonusStatusSectionLayout()
                 
-            case .some(.services): return serviceSectionLayout()
+            case .some(.services): return servicesSectionLayout()
                 
             case .some(.recommend): return productSectionLayout()
     
@@ -189,27 +183,27 @@ extension CollectionForMainViewController {
    
     private func storiesSectionLayout() -> NSCollectionLayoutSection {
         
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .estimated(50))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 0)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(140))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(50))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
 
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 10, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 5, bottom: 10, trailing: 5)
         
         return section
     }
     
-    private func specialOffersSectionLayout() -> NSCollectionLayoutSection {
+    private func bannersSectionLayout() -> NSCollectionLayoutSection {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(140))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
@@ -217,8 +211,9 @@ extension CollectionForMainViewController {
 
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 5, bottom: 10, trailing: 5)
         
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 10, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5)
         
         return section
     }
@@ -241,11 +236,11 @@ extension CollectionForMainViewController {
         return section
     }
     
-    private func serviceSectionLayout() -> NSCollectionLayoutSection {
+    private func servicesSectionLayout() -> NSCollectionLayoutSection {
         
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33), heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0 / 3), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(120))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
@@ -253,8 +248,7 @@ extension CollectionForMainViewController {
 
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 10, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 5, bottom: 10, trailing: 5)
         
         return section
     }
@@ -274,7 +268,7 @@ extension CollectionForMainViewController {
 
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 10, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 0, bottom: 10, trailing: 0)
         section.boundarySupplementaryItems = [sectionHeader]
         
         return section

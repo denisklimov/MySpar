@@ -6,10 +6,7 @@
 //
 
 import UIKit
-import Foundation
 
-
-//TODO: Protocol!
 
 class DataOfModels {
     
@@ -22,17 +19,17 @@ class DataOfModels {
         StoryModel(image: UIImage(named: "storySixth")!, footer: "Полезный обед", isRead: true),
     ]
     
-    static var specialOffers = [
-        SpecialOfferModel(specialOfferImage: UIImage(named: "01specialOffer")!),
-        SpecialOfferModel(specialOfferImage: UIImage(named: "02specialOffer")!),
-        SpecialOfferModel(specialOfferImage: UIImage(named: "03specialOffer")!),
-        SpecialOfferModel(specialOfferImage: UIImage(named: "04specialOffer")!),
-        SpecialOfferModel(specialOfferImage: UIImage(named: "05specialOffer")!),
-        SpecialOfferModel(specialOfferImage: UIImage(named: "06specialOffer")!),
-        SpecialOfferModel(specialOfferImage: UIImage(named: "07specialOffer")!),
+    static var banners = [
+        BannerModel(image: UIImage(named: "01specialOffer")!),
+        BannerModel(image: UIImage(named: "02specialOffer")!),
+        BannerModel(image: UIImage(named: "03specialOffer")!),
+        BannerModel(image: UIImage(named: "04specialOffer")!),
+        BannerModel(image: UIImage(named: "05specialOffer")!),
+        BannerModel(image: UIImage(named: "06specialOffer")!),
+        BannerModel(image: UIImage(named: "07specialOffer")!),
     ]
     
-    static var bonusStatus = [BonusStatusModel(bounus: 1276)]
+    static var bonus = [BonusModel(bounus: 1276)]
     
     static let services = [
         ServiceModel(title: "Абонемент на кофе", titleColor: .white, image: UIImage(named: "servicesCoffee")!),
@@ -45,15 +42,15 @@ class DataOfModels {
     
     static let recomendations = [
         ProductModel(
-            accentLabel: nil,
-            accentLabelColor: nil,
+            accentLabel: "Выгодно",
+            accentLabelColor: UIColor(named: "AccentGreen"),
             productImage: UIImage(named: "lamber")!,
             actualPrice: 159.99,
             oldPrice: 199.99,
             discount: "20%"),
         
         ProductModel(
-            accentLabel: "Our kitchen",
+            accentLabel: "Наша кухня",
             accentLabelColor: UIColor.blue,
             productImage: UIImage(named: "pizza")!,
             actualPrice: 295.47,
@@ -61,7 +58,7 @@ class DataOfModels {
             discount: "17%"),
         
         ProductModel(
-            accentLabel: "Bestseller",
+            accentLabel: nil,
             accentLabelColor: UIColor.black,
             productImage: UIImage(named: "iceCream")!,
             actualPrice: 226.99,
@@ -69,7 +66,7 @@ class DataOfModels {
             discount: nil),
         
         ProductModel(
-            accentLabel: "Best offer",
+            accentLabel: "Отличная цена",
             accentLabelColor: nil,
             productImage: UIImage(named: "watermelon")!,
             actualPrice: 29.99,
@@ -105,10 +102,10 @@ class DataOfModels {
         
         ProductModel(
             accentLabel: "Мороженое",
-            accentLabelColor: .systemTeal,
+            accentLabelColor: .magenta,
             productImage: UIImage(named: "sweets04")!,
-            actualPrice: 4.90,
-            oldPrice: nil,
+            actualPrice: 40.90,
+            oldPrice: 400.90,
             discount: "40%"),
         
         ProductModel(

@@ -19,12 +19,13 @@ class CollectionViewSectionHeaderView: UICollectionReusableView {
         addSubview(title)
         title.translatesAutoresizingMaskIntoConstraints = false
         title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        title.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        title.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
         title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        title.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+        title.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }

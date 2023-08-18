@@ -18,7 +18,7 @@ struct ServiceContentConfiguration: UIContentConfiguration, Hashable {
     }
     
     func updated(for state: UIConfigurationState) -> ServiceContentConfiguration {
-        
         return self
     }
+    
 }

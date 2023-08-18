@@ -27,7 +27,6 @@ struct StoryContentConfiguration: UIContentConfiguration, Hashable {
         if let isRead = isRead {
             updatedConfiguration.borderColor = isRead ? isReadColor : isNotReadColor
         }
-
         return updatedConfiguration
     }
     

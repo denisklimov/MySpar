@@ -35,5 +35,4 @@ class TabBarViewController: UITabBarController {
         tabBar.tintColor = UIColor(named: "AccentGreen")
         
     }
-    
 }
