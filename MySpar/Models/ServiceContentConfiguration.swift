@@ -7,14 +7,10 @@
 
 import UIKit
 
-enum TitleColorMode {
-    case dark, light
-}
-
 struct ServiceContentConfiguration: UIContentConfiguration, Hashable {
     
     var title: String?
-    var titleColorMode: TitleColorMode?
+    var titleColor: UIColor?
     var image: UIImage?
     
     func makeContentView() -> UIView & UIContentView {
@@ -22,6 +18,7 @@ struct ServiceContentConfiguration: UIContentConfiguration, Hashable {
     }
     
     func updated(for state: UIConfigurationState) -> ServiceContentConfiguration {
+        
         return self
     }
 }

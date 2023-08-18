@@ -6,11 +6,12 @@
 //
 
 import UIKit
-import Foundation
 
-struct StoryModel: Hashable, Identifiable {
+struct StoryModel: Hashable {
+    
     let id = UUID()
-    var image: UIImage
-    var headerText: String
-    var isRead: Bool
+    
+    let image: UIImage
+    let footer: String
+    let isRead: Bool
 }

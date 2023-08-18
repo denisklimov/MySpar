@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class ServiceContentView: UIView, UIContentView {
     
     private var currentConfiguration: ServiceContentConfiguration!
@@ -29,8 +28,9 @@ class ServiceContentView: UIView, UIContentView {
     
     private func setupViews() {
         
-        title.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        title.numberOfLines = 2
+        title.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        title.numberOfLines = 0
+        title.lineBreakMode = .byWordWrapping
         
         imageView.contentMode = .scaleAspectFill
         
@@ -40,25 +40,23 @@ class ServiceContentView: UIView, UIContentView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         title.translatesAutoresizingMaskIntoConstraints = false
         title.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 10.0).isActive = true
-        title.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 10.0).isActive = true
+        title.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 5.0).isActive = true
         title.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -10).isActive = true
+        
     }
     
     private func apply(configuration: ServiceContentConfiguration) {
         
         guard currentConfiguration != configuration else { return }
         currentConfiguration = configuration
+        
         title.text = configuration.title
-        switch configuration.titleColorMode {
-        case .dark:
-            title.textColor = UIColor.white
-        case .light:
-            title.textColor = UIColor.black
-        }
+        title.textColor = configuration.titleColor
         imageView.image = configuration.image
     }
     
@@ -68,10 +66,11 @@ class ServiceContentView: UIView, UIContentView {
         super.init(frame: .zero)
         self.configuration = configuration
         
+        self.layer.cornerRadius = 10
+        self.clipsToBounds = true
+        
         setupViews()
-        
         apply(configuration: configuration)
-        
     }
     
     required init?(coder: NSCoder) {

@@ -13,8 +13,9 @@ class ServiceConfCollectionViewCell: UICollectionViewCell {
     
     override func updateConfiguration(using state: UICellConfigurationState) {
         var newConfiguration = ServiceContentConfiguration().updated(for: state)
-        newConfiguration.title = item?.serviceTitle
-        newConfiguration.image = item?.serviceImage
+        newConfiguration.title = item?.title
+        newConfiguration.titleColor = item?.titleColor
+        newConfiguration.image = item?.image
         contentConfiguration = newConfiguration
     }
     

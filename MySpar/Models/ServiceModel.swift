@@ -6,13 +6,12 @@
 //
 
 import UIKit
-import Foundation
 
 struct ServiceModel: Hashable {
-    enum TitleColorMode {
-        case dark, light
-    }
-    let serviceTitle: String
-    let titleColorMode: TitleColorMode
-    let serviceImage: UIImage
+    
+    var id = UUID()
+    
+    let title: String
+    let titleColor: UIColor
+    let image: UIImage
 }

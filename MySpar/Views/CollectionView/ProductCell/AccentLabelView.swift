@@ -9,7 +9,7 @@ import UIKit
 
 class AccentLabelView: UIView {
 
-    var label: String = "" {
+    var label: String? {
         didSet {
             accentLabel.text = label
         }
@@ -17,9 +17,15 @@ class AccentLabelView: UIView {
     var background: UIColor? {
         didSet {
             if let background = background {
-                backgroundColor = background.withAlphaComponent(0.6)
+                if let _ = label {
+                    backgroundColor = background.withAlphaComponent(0.6)
+                } else {
+                    backgroundColor = .clear
+                }
             } else {
-                backgroundColor = .red.withAlphaComponent(0.6)
+                if let _ = label {
+                    backgroundColor = .red.withAlphaComponent(0.6)
+                }
             }
         }
     }

@@ -9,7 +9,7 @@ import UIKit
 
 class DiscountLabelView: UIView {
 
-    var discount: String = "" {
+    var discount: String? {
         didSet {
             discountLabel.text = discount
         }

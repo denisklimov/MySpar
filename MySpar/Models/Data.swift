@@ -14,12 +14,12 @@ import Foundation
 class DataOfModels {
     
     static var stories = [
-        StoryModel(image: UIImage(named: "storyFirst")!, headerText: "Вкусные хот-доги", isRead: true),
-        StoryModel(image: UIImage(named: "storySecond")!, headerText: "Яйца на завтрак", isRead: true),
-        StoryModel(image: UIImage(named: "storyThird")!, headerText: "Быстрый перекус", isRead: false),
-        StoryModel(image: UIImage(named: "storyFourth")!, headerText: "Орехи для здоровья", isRead: false),
-        StoryModel(image: UIImage(named: "storyFifth")!, headerText: "Любимые овощи", isRead: false),
-        StoryModel(image: UIImage(named: "storySixth")!, headerText: "Полезный обед", isRead: true),
+        StoryModel(image: UIImage(named: "storyFirst")!, footer: "Вкусные хот-доги", isRead: true),
+        StoryModel(image: UIImage(named: "storySecond")!, footer: "Яйца на завтрак", isRead: true),
+        StoryModel(image: UIImage(named: "storyThird")!, footer: "Быстрый перекус", isRead: false),
+        StoryModel(image: UIImage(named: "storyFourth")!, footer: "Орехи для здоровья", isRead: false),
+        StoryModel(image: UIImage(named: "storyFifth")!, footer: "Любимые овощи", isRead: false),
+        StoryModel(image: UIImage(named: "storySixth")!, footer: "Полезный обед", isRead: true),
     ]
     
     static var specialOffers = [
@@ -35,46 +35,46 @@ class DataOfModels {
     static var bonusStatus = [BonusStatusModel(bounus: 1276)]
     
     static let services = [
-        ServiceModel(serviceTitle: "Абонемент на кофе", titleColorMode: .dark, serviceImage: UIImage(named: "servicesCoffee")!),
-        ServiceModel(serviceTitle: "Винный клуб", titleColorMode: .dark, serviceImage: UIImage(named: "servicesWine")!),
-        ServiceModel(serviceTitle: "Доставка", titleColorMode: .dark, serviceImage: UIImage(named: "servicesDelivery")!),
-        ServiceModel(serviceTitle: "Скидки и акции", titleColorMode: .light, serviceImage: UIImage(named: "servicesDiscounts")!),
-        ServiceModel(serviceTitle: "Список покупок", titleColorMode: .dark, serviceImage: UIImage(named: "servicesShoppingList")!),
-        ServiceModel(serviceTitle: "Карта покупателя", titleColorMode: .light, serviceImage: UIImage(named: "servicesCard")!),
+        ServiceModel(title: "Абонемент на кофе", titleColor: .white, image: UIImage(named: "servicesCoffee")!),
+        ServiceModel(title: "Винный клуб", titleColor: .white, image: UIImage(named: "servicesWine")!),
+        ServiceModel(title: "Доставка", titleColor: .white, image: UIImage(named: "servicesDelivery")!),
+        ServiceModel(title: "Скидки и акции", titleColor: .black, image: UIImage(named: "servicesDiscounts")!),
+        ServiceModel(title: "Список покупок", titleColor: .white, image: UIImage(named: "servicesShoppingList")!),
+        ServiceModel(title: "Карта покупателя", titleColor: .black, image: UIImage(named: "servicesCard")!),
     ]
     
     static let recomendations = [
         ProductModel(
             accentLabel: nil,
-            accentLabelColor: .systemTeal,
-            discount: "20%",
+            accentLabelColor: nil,
             productImage: UIImage(named: "lamber")!,
             actualPrice: 159.99,
-            oldPrice: 199.99),
+            oldPrice: 199.99,
+            discount: "20%"),
         
         ProductModel(
             accentLabel: "Our kitchen",
             accentLabelColor: UIColor.blue,
-            discount: "17%",
             productImage: UIImage(named: "pizza")!,
             actualPrice: 295.47,
-            oldPrice: 355.99),
+            oldPrice: 355.99,
+            discount: "17%"),
         
         ProductModel(
             accentLabel: "Bestseller",
             accentLabelColor: UIColor.black,
-            discount: nil,
             productImage: UIImage(named: "iceCream")!,
             actualPrice: 226.99,
-            oldPrice: nil),
+            oldPrice: nil,
+            discount: nil),
         
         ProductModel(
             accentLabel: "Best offer",
             accentLabelColor: nil,
-            discount: nil,
             productImage: UIImage(named: "watermelon")!,
             actualPrice: 29.99,
-            oldPrice: nil),
+            oldPrice: nil,
+            discount: nil),
     ]
     
     
@@ -82,51 +82,57 @@ class DataOfModels {
         ProductModel(
             accentLabel: "Мороженое",
             accentLabelColor: .systemTeal,
-            discount: "10%",
             productImage: UIImage(named: "sweets01")!,
             actualPrice: 1.90,
-            oldPrice: nil),
+            oldPrice: nil,
+            discount: "10%"),
+        
         ProductModel(
             accentLabel: "Мороженое",
             accentLabelColor: .systemTeal,
-            discount: "20%",
             productImage: UIImage(named: "sweets02")!,
             actualPrice: 2.90,
-            oldPrice: nil),
+            oldPrice: nil,
+            discount: "20%"),
+        
         ProductModel(
             accentLabel: "Мороженое",
             accentLabelColor: .systemTeal,
-            discount: "30%",
             productImage: UIImage(named: "sweets03")!,
             actualPrice: 3.90,
-            oldPrice: nil),
+            oldPrice: nil,
+            discount: "30%"),
+        
         ProductModel(
             accentLabel: "Мороженое",
             accentLabelColor: .systemTeal,
-            discount: "40%",
             productImage: UIImage(named: "sweets04")!,
             actualPrice: 4.90,
-            oldPrice: nil),
+            oldPrice: nil,
+            discount: "40%"),
+        
         ProductModel(
             accentLabel: "Мороженое",
             accentLabelColor: .systemTeal,
-            discount: "50%",
             productImage: UIImage(named: "sweets05")!,
             actualPrice: 5.90,
-            oldPrice: 12.0),
+            oldPrice: 12.0,
+            discount: "50%"),
+        
         ProductModel(
             accentLabel: "Конфеты",
             accentLabelColor: .systemTeal,
-            discount: nil,
             productImage: UIImage(named: "sweets06")!,
             actualPrice: 6.90,
-            oldPrice: nil),
+            oldPrice: nil,
+            discount: nil),
+        
         ProductModel(
             accentLabel: "Конфеты",
             accentLabelColor: .systemTeal,
-            discount: nil,
             productImage: UIImage(named: "sweets07")!,
             actualPrice: 7.90,
-            oldPrice: nil),
+            oldPrice: nil,
+            discount: nil)
         ]
 }

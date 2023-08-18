@@ -8,14 +8,15 @@
 import UIKit
 import Foundation
 
-struct ProductModel: Hashable, Identifiable {
+struct ProductModel: Hashable {
     
     let id = UUID()
     
     var accentLabel: String?
     var accentLabelColor: UIColor?
-    var discount: String?
     var productImage: UIImage
     var actualPrice: Double
     var oldPrice: Double?
+    var discount: String?
+    
 }
