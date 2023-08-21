@@ -157,17 +157,17 @@ class CollectionForMainViewController: UICollectionViewController {
             case .none:
                 return nil
                 
-            case .some(.stories): return storiesSectionLayout()
+            case .stories: return storiesSectionLayout()
 
-            case .some(.banners): return bannersSectionLayout()
+            case .banners: return bannersSectionLayout()
 
-            case .some(.bonus): return bonusStatusSectionLayout()
+            case .bonus: return bonusStatusSectionLayout()
                 
-            case .some(.services): return servicesSectionLayout()
+            case .services: return servicesSectionLayout()
                 
-            case .some(.recommend): return productSectionLayout()
+            case .recommend: return productSectionLayout()
     
-            case .some(.sweets): return productSectionLayout()
+            case .sweets: return productSectionLayout()
             }
 
         }

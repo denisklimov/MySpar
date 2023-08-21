@@ -20,7 +20,7 @@ class SearchBarForMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        searchTextField.text = "Moscow"
+        searchTextField.text = "Москва, Московская область"
         
         bottomBorder = view.addBottomBorder(UIColor.systemGray5)
         menuButton.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)

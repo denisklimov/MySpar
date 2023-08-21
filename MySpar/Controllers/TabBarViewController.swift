@@ -17,13 +17,14 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mainViewController.tabBarItem.title = "Main"
-        mainViewController.tabBarItem.image = UIImage(systemName: "tree.circle")
-        catalogueViewController.tabBarItem.title = "Catalogue"
+        mainViewController.tabBarItem.title = "Главная"
+        mainViewController.tabBarItem.image = UIImage(named: "sparIcon")
+        mainViewController.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 7, bottom: 6, right: 7)
+        catalogueViewController.tabBarItem.title = "Каталог"
         catalogueViewController.tabBarItem.image = UIImage(systemName: "square.grid.2x2")
-        cartViewController.tabBarItem.title = "Cart"
+        cartViewController.tabBarItem.title = "Корзина"
         cartViewController.tabBarItem.image = UIImage(systemName: "cart")
-        profileViewController.tabBarItem.title = "Profile"
+        profileViewController.tabBarItem.title = "Профиль"
         profileViewController.tabBarItem.image = UIImage(systemName: "person")
         
         viewControllers = [ mainViewController,
